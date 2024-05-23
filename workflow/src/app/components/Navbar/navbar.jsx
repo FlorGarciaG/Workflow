@@ -8,13 +8,12 @@ import {
   NavbarToggle,
   NavbarCollapse,
   NavLink,
+  NavDropdown,
 } from "react-bootstrap";
 import styles from "./navbar.module.css";
 
-import { useAuth } from "@/app/context/AuthContext";
 
 function NavBar() {
-  const { user, logout } = useAuth();
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
