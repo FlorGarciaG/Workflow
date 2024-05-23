@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +5,64 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Prueba {
+  id_prueba     Int       @id @default(autoincrement())
+  descripcion   String    @db.Text
+  hora_creacion DateTime? @default(now()) @db.Timestamp(0)
+  hora_atencion DateTime? @db.Timestamp(0)
+  hora_termina  DateTime? @db.Timestamp(0)
+  SolxPru       SolxPru[]
+}
+
+model Solucion {
+  id_solucion   Int       @id @default(autoincrement())
+  hora_creacion DateTime? @default(now()) @db.Timestamp(0)
+  hora_atencion DateTime? @db.Timestamp(0)
+  hora_termina  DateTime? @db.Timestamp(0)
+  descripcion   String    @db.Text
+  SolxPru       SolxPru[]
+}
+
+model SolxPru {
+  id_solxpru  Int      @id @default(autoincrement())
+  id_solucion Int
+  id_prueba   Int
+  id_tarea    Int
+  Tareas      Tareas   @relation(fields: [id_tarea], references: [id_tarea], onDelete: NoAction, onUpdate: NoAction, map: "FK$SOLXPRU$TAREA")
+  Prueba      Prueba   @relation(fields: [id_prueba], references: [id_prueba], onDelete: NoAction, onUpdate: NoAction, map: "FK_Prueba")
+  Solucion    Solucion @relation(fields: [id_solucion], references: [id_solucion], onDelete: NoAction, onUpdate: NoAction, map: "FK_Solucion")
+
+  @@index([id_tarea], map: "FK$SOLXPRU$TAREA")
+  @@index([id_prueba], map: "FK_Prueba")
+  @@index([id_solucion], map: "FK_Solucion")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model Tareas {
+  id_tarea      Int       @id
+  titulo        String    @db.VarChar(50)
+  descripcion   String    @db.VarChar(120)
+  evidencias    String    @db.VarChar(50)
+  estado        String    @db.VarChar(30)
+  id_Usuario    Int
+  Hora_creacion DateTime  @db.Timestamp(0)
+  Hora_termina  DateTime  @db.Timestamp(0)
+  SolxPru       SolxPru[]
+  Usuario       Usuario   @relation(fields: [id_Usuario], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "FK$TAREAS$USUARIO")
+
+  @@index([id_Usuario], map: "FK$TAREAS$USUARIO")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model Usuario {
+  id_usuario  Int      @id
+  nombre      String   @db.VarChar(50)
+  ap_paterno  String   @db.VarChar(50)
+  ap_materno  String?  @db.VarChar(50)
+  correo      String   @unique(map: "UK$USUARIO$CORREO") @db.VarChar(50)
+  contrasenia String   @db.VarChar(50)
+  rol         String   @db.VarChar(30)
+  Tareas      Tareas[]
 }
