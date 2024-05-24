@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useState, useContext, useEffect } from "react";
 import { loginRequest } from "../api/auth";
+import Swal from "sweetalert2";
 
 export const AuthContext = createContext();
 
@@ -24,6 +25,11 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data);
       console.log("Hay acceso al sistema");
     } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Credenciales incorrectas. Por favor, inténtelo de nuevo.',
+      });
       console.log("No Hay acceso al sistema");
       console.log(error);
     }

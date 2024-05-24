@@ -5,7 +5,10 @@ import { Form, Button, Container } from "react-bootstrap";
 import styles from "./page.module.css";
 import { useAuth } from "@/app/context/AuthContext";
 
+
 function LoginForm() {
+
+  
   const {
     register,
     handleSubmit,
