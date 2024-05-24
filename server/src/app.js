@@ -18,7 +18,7 @@ dotenv.config();
 
 const URI = process.env.DATABASE_URL
   ? process.env.DATABASE_URL
-  : "mysql://root:vyJDrzOGquIrgoWUEuvvdgUBVcQfreWO@monorail.proxy.rlwy.net:21532/railway";
+  : "mysql://root:ozaAQLsRwHBNytucoDwzMZPKYpzWXjUK@roundhouse.proxy.rlwy.net:58222/railway";
 console.log(URI);
 
 //Settings
