@@ -32,7 +32,7 @@ function NavBar() {
                 <NavLink className={styles.links} href="#link">
                 Incidencias
                 </NavLink>
-                <Button variant="light" className={styles.boton} href="#link">
+                <Button variant="light" className={styles.boton} href="/pages/login">
                 Ingresar
                 </Button>
                 <Button variant="light" className={styles.boton} href="#link">
