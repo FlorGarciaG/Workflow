@@ -17,6 +17,9 @@ function IncidenciasUser() {
   const [modalShowAtencion, setModalShowAtencion] = React.useState(false);
 
   const { user } = useAuth();
+  console.log(user);
+
+  const rol = user.rol;
 
   const handleOpenRevision = () => {
     setModalShowDetalle(false);
@@ -75,12 +78,15 @@ function IncidenciasUser() {
                     >
                       Detalles
                     </button>
-                    <button
-                      className={`mb-2 ${styles.btn}`}
-                      onClick={() => setModalShowAtencion(true)}
-                    >
-                      Atencion
-                    </button>
+
+                    {rol !== "general" && rol !== "coordinador" && (
+                      <button
+                        className={`mb-2 ${styles.btn}`}
+                        onClick={() => setModalShowAtencion(true)}
+                      >
+                        Atencion
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
