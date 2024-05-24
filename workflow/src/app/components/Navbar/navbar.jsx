@@ -11,36 +11,41 @@ import {
     Button,
 } from "react-bootstrap";
 import styles from "./navbar.module.css";
+import { signOut, useSession } from "next-auth/react";
 
 function NavBar() {
+    const session = useSession();
     return (
         <Navbar
-        className={` bg-body-tertiary py-4 ${styles.navbar}`}
-        expand="lg"
-        variant="dark"
+            className={` bg-body-tertiary py-4 ${styles.navbar}`}
+            expand="lg"
+            variant="dark"
         >
-        <Container>
-            <NavbarBrand className={styles.links} href="/">
-            QuickFix
-            </NavbarBrand>
-            <NavbarToggle aria-controls="responsive-navbar-nav" />
-            <NavbarCollapse id="responsive-navbar-nav">
-            <Nav className="ms-auto gap-2">
-                <NavLink className={styles.links} href="/pages/user/terminadoUser">
-                Tareas terminadas
-                </NavLink>
-                <NavLink className={styles.links} href="/pages/user/incidenciasUser">
-                Incidencias
-                </NavLink>
-                <Button variant="light" className={styles.boton} href="/pages/login">
-                Ingresar
-                </Button>
-                <Button variant="light" className={styles.boton} href="/">
-                Salir
-                </Button>
-            </Nav>
-            </NavbarCollapse>
-        </Container>
+            <Container>
+                <NavbarBrand className={styles.links} href="/">
+                    QuickFix
+                </NavbarBrand>
+                <NavbarToggle aria-controls="responsive-navbar-nav" />
+                <NavbarCollapse id="responsive-navbar-nav">
+                    <Nav className="ms-auto gap-2">
+                        <NavLink className={styles.links} href="/pages/user/terminadoUser">
+                            Tareas terminadas
+                        </NavLink>
+                        <NavLink className={styles.links} href="/pages/user/incidenciasUser">
+                            Incidencias
+                        </NavLink>
+                        <Button variant="light" className={styles.boton} href="/pages/login">
+                            Ingresar
+                        </Button>
+                        {session.status === "authenticated" && (
+                            <Button variant="light" className={styles.boton} href="/">
+                                Salir
+                            </Button>
+                        )}
+
+                    </Nav>
+                </NavbarCollapse>
+            </Container>
         </Navbar>
     );
 }
