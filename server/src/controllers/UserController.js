@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import crypto from "crypto";
 
 const prisma = new PrismaClient();
 
@@ -14,13 +15,26 @@ export const getUsers = async (req, res) => {
 export const createUser = async (req, res) => {
   const { nombre, ap_paterno, ap_materno, correo, contrasenia, rol } = req.body;
   try {
+    const userFound = await prisma.Usuario.findUnique({
+      where: { correo: String(req.params.correo) },
+    });
+
+    if (userFound)
+      return res.status(400).json({
+        message: ["El email ya esta en uso"],
+      });
+
+    const hash = crypto.createHash("sha256");
+    hash.update(contrasenia);
+    const passwordHash = hash.digest("hex");
+
     const user = await prisma.Usuario.create({
       data: {
         nombre,
         ap_paterno,
         ap_materno,
         correo,
-        contrasenia,
+        contrasenia: passwordHash,
         rol,
       },
     });
@@ -37,7 +51,7 @@ export const updateUser = async (req, res) => {
       data: req.body,
     });
     if (!testActualizado)
-      return res.status(404).json({ error: "Tarea no encontrada" });
+      return res.status(404).json({ error: "Usuario no encontrado" });
     res.status(200).json(testActualizado);
   } catch (error) {
     res
@@ -51,7 +65,7 @@ export const getUserById = async (req, res) => {
     const test = await prisma.Usuario.findUnique({
       where: { id_usuario: Number(req.params.id) },
     });
-    if (!test) return res.status(404).json({ error: "Tarea no encontrada" });
+    if (!test) return res.status(404).json({ error: "Usuario no encontrado" });
     res.status(200).json(test);
   } catch (error) {
     res
@@ -66,7 +80,7 @@ export const deleteUser = async (req, res) => {
       where: { id_usuario: Number(req.params.id) },
     });
     if (!userEliminado)
-      return res.status(404).json({ error: "Camionero no encontrado" });
+      return res.status(404).json({ error: "Usuario no encontrado" });
     res.status(200).json(userEliminado);
   } catch (error) {
     res
