@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./page.module.css";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import ModalCreate from "@/app/components/Modals/ModalCreate";
@@ -9,6 +9,7 @@ import ModalRevision from "@/app/components/Modals/ModalRevision";
 import { FaPlusCircle } from "react-icons/fa";
 import ModalAtencion from "@/app/components/Modals/ModalAtencion";
 import { useAuth } from "@/app/context/AuthContext";
+import api from "../../../api/axios";
 
 function IncidenciasUser() {
   const [modalShowDetalle, setModalShowDetalle] = React.useState(false);
@@ -16,10 +17,17 @@ function IncidenciasUser() {
   const [modalShowRevision, setModalShowRevision] = React.useState(false);
   const [modalShowAtencion, setModalShowAtencion] = React.useState(false);
 
+  const [ getUser, setUser ] = useState([]);
+
   const { user } = useAuth();
-  console.log(user);
 
   const rol = user.rol;
+  const correo = user.correo;
+  
+  console.log(user);
+  
+
+
 
   const handleOpenRevision = () => {
     setModalShowDetalle(false);

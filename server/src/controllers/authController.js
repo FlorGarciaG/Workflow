@@ -21,11 +21,11 @@ export const login = async (req, res) => {
     }
 
     res.json({
-      id_usuario: usuarioFound.id,
+      id_usuario: usuarioFound.id_usuario,
       nombre: usuarioFound.nombre,
       ap_paterno: usuarioFound.ap_paterno,
       ap_materno: usuarioFound.ap_materno,
-      correo: usuarioFound.nombreCompleto,
+      correo: usuarioFound.correo,
       rol: usuarioFound.rol,
     });
   } catch (error) {
