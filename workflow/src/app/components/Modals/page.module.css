@@ -13,6 +13,28 @@
     border: none;
 }
 
+.buttonHistorial{
+    background-color: #EF8354;
+    border: none;
+}
+.buttonClose2{
+    background: #DB5461;
+    border: none;
+}
+
 .label{
     font-weight: 500;
+}
+
+
+.table td{
+    border: none;
+}
+
+.badge{
+    background-color: #4F5D75 !important;
+    font-weight: 400;
+}
+.tdBadge{
+    width: fit-content;
 }

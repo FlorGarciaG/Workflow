@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./page.module.css";
 import { Row, Col, Container, Button, Card } from "react-bootstrap";
 import ModalCreate from "@/app/components/Modals/ModalCreate";
+import ModalDetalle from "@/app/components/Modals/ModalDetalle";
 
 function incidenciasUser() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -29,7 +30,7 @@ function incidenciasUser() {
               </div>
               <hr />
               <div className={`d-flex flex-wrap justify-content-center gap-2 ${styles.btns}`}>
-                <button className={`mb-2 ${styles.btnD}`}>Detalles</button>
+                <button className={`mb-2 ${styles.btnD}`}  onClick={() => setModalShow(true)}>Detalles</button>
                 {/* <button className={styles.btn}>Asignar</button> */}
                 {/* <button className={`mb-2 ${styles.btn}`}>Atención</button> */}
               </div>
@@ -41,7 +42,7 @@ function incidenciasUser() {
         </Row>
       </Container>
 
-      <ModalCreate
+      <ModalDetalle
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
