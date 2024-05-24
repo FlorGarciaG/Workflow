@@ -16,7 +16,7 @@ function ModalRevision({ onOpenDetalle, ...props }) {
       scrollable
     >
       <Modal.Header closeButton>
-        <Modal.Title>Atención</Modal.Title>
+        <Modal.Title>Historial</Modal.Title>
       </Modal.Header>
       <Modal.Body>
       <Table striped bordered hover>

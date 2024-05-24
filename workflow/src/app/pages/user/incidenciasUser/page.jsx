@@ -6,11 +6,13 @@ import ModalCreate from "@/app/components/Modals/ModalCreate";
 import ModalDetalle from "@/app/components/Modals/ModalDetalle";
 import ModalRevision from "@/app/components/Modals/ModalRevision";
 import { FaPlusCircle } from "react-icons/fa";
+import ModalAtencion from "@/app/components/Modals/ModalAtencion";
 
 function IncidenciasUser() {
   const [modalShowDetalle, setModalShowDetalle] = React.useState(false);
   const [modalShowCreate, setModalShowCreate] = React.useState(false);
   const [modalShowRevision, setModalShowRevision] = React.useState(false);
+  const [modalShowAtencion, setModalShowAtencion] = React.useState(false);
 
   const handleOpenRevision = () => {
     setModalShowDetalle(false);
@@ -27,7 +29,12 @@ function IncidenciasUser() {
       <Container className="my-4">
         <Row className=" mb-3">
           <Col className="d-flex  flex-row-reverse mb-3">
-            <Button className={`${styles.crear}`} onClick={() => setModalShowCreate(true)}>Crear Incidencia <FaPlusCircle /></Button>
+            <Button
+              className={`${styles.crear}`}
+              onClick={() => setModalShowCreate(true)}
+            >
+              Crear Incidencia <FaPlusCircle />
+            </Button>
           </Col>
         </Row>
         <Row>
@@ -44,13 +51,23 @@ function IncidenciasUser() {
                 </div>
                 <br />
                 <div className={`mb-2 ${styles.cardSubtitle}`}>Estatus</div>
-                <div className={styles.cardBody}>
-                  Sin asignar
-                </div>
+                <div className={styles.cardBody}>Sin asignar</div>
                 <hr />
-                <div className={`d-flex flex-wrap justify-content-center gap-2 ${styles.btns}`}>
-                  <button className={`mb-2 ${styles.btnD}`} onClick={() => setModalShowDetalle(true)}>Detalles</button>
-                  <button className={`mb-2 ${styles.btn}`} onClick={() => setModalShowDetalle(true)}>Atencion</button>
+                <div
+                  className={`d-flex flex-wrap justify-content-center gap-2 ${styles.btns}`}
+                >
+                  <button
+                    className={`mb-2 ${styles.btnD}`}
+                    onClick={() => setModalShowDetalle(true)}
+                  >
+                    Detalles
+                  </button>
+                  <button
+                    className={`mb-2 ${styles.btn}`}
+                    onClick={() => setModalShowAtencion(true)}
+                  >
+                    Atencion
+                  </button>
                 </div>
               </div>
             </div>
@@ -73,6 +90,11 @@ function IncidenciasUser() {
         show={modalShowRevision}
         onHide={() => setModalShowRevision(false)}
         onOpenDetalle={handleOpenDetalle}
+      />
+
+      <ModalAtencion
+        show={modalShowAtencion}
+        onHide={() => setModalShowAtencion(false)}
       />
     </>
   );
