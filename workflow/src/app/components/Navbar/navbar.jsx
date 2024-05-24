@@ -11,8 +11,11 @@ import {
     Button,
 } from "react-bootstrap";
 import styles from "./navbar.module.css";
+import { useAuth } from "../../context/AuthContext";
 
 function NavBar() {
+    const { isAuthen } = useAuth();
+
     return (
         <Navbar
             className={` bg-body-tertiary py-4 ${styles.navbar}`}
@@ -32,13 +35,16 @@ function NavBar() {
                         <NavLink className={styles.links} href="/pages/user/incidenciasUser">
                             Incidencias
                         </NavLink>
-                        <Button variant="light" className={styles.boton} href="/pages/login">
-                            Ingresar
-                        </Button>
+                        {isAuthen && (
                             <Button variant="light" className={styles.boton} href="/">
                                 Salir
                             </Button>
-
+                        )}
+                        {!isAuthen && (
+                            <Button variant="light" className={styles.boton} href="/pages/login">
+                                Ingresar
+                            </Button>
+                        )}
                     </Nav>
                 </NavbarCollapse>
             </Container>
