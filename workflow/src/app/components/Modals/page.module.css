@@ -8,6 +8,11 @@
     border: none;
 }
 
+.buttonFinish{
+    background: #DB5461;
+    border: none;
+}
+
 .label{
     font-weight: 500;
 }
