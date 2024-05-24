@@ -13,24 +13,28 @@ export const getTasks = async (req, res) => {
 
 export const createTask = async (req, res) => {
   const {
-    Titulo,
+    titulo,
     descripcion,
-    Evidencia,
+    evidencias,
     estado,
-    id_usuario,
-    Hora_creacion,
-    Hora_termina,
+    id_creo,
+    hora_creacion,
+    hora_termina,
+    id_solucionador,
+    id_prueba,
   } = req.body;
   try {
     const task = await prisma.Tareas.create({
       data: {
-        Titulo,
+        titulo,
         descripcion,
-        Evidencia,
+        evidencias,
         estado,
-        id_usuario,
-        Hora_creacion,
-        Hora_termina,
+        id_creo,
+        hora_creacion,
+        hora_termina,
+        id_solucionador,
+        id_prueba,
       },
     });
     return res.status(201).json(task);
@@ -42,7 +46,7 @@ export const createTask = async (req, res) => {
 export const getTasksById = async (req, res) => {
   try {
     const solution = await prisma.Tareas.findUnique({
-      where: { id_tarea: Number(req.params.id), },
+      where: { id_tarea: Number(req.params.id) },
     });
     return res.status(200).json(solution);
   } catch (error) {
@@ -53,7 +57,7 @@ export const getTasksById = async (req, res) => {
 export const deleteTask = async (req, res) => {
   try {
     await prisma.Tareas.delete({
-      where: { id_tarea: Number(req.params.id), },
+      where: { id_tarea: Number(req.params.id) },
     });
     return res.status(204).json();
   } catch (error) {
@@ -63,25 +67,29 @@ export const deleteTask = async (req, res) => {
 
 export const updateTask = async (req, res) => {
   const {
-    Titulo,
+    titulo,
     descripcion,
-    Evidencia,
+    evidencias,
     estado,
-    id_usuario,
-    Hora_creacion,
-    Hora_termina,
+    id_creo,
+    hora_creacion,
+    hora_termina,
+    id_solucionador,
+    id_prueba,
   } = req.body;
   try {
     const task = await prisma.Tareas.update({
-      where: { id_tarea: Number(req.params.id), },
+      where: { id_tarea: Number(req.params.id) },
       data: {
-        Titulo,
+        titulo,
         descripcion,
-        Evidencia,
+        evidencias,
         estado,
-        id_usuario,
-        Hora_creacion,
-        Hora_termina,
+        id_creo,
+        hora_creacion,
+        hora_termina,
+        id_solucionador,
+        id_prueba,
       },
     });
     return res.status(200).json(task);

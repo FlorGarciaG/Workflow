@@ -12,14 +12,13 @@ export const getTests = async (req, res) => {
 };
 
 export const createTest = async (req, res) => {
-  const { Hora_atencion, Hora_creacion, Hora_termina, descripcion } = req.body;
+  const { hora_creacion, descripcion, id_tecnico } = req.body;
   try {
     const test = await prisma.Prueba.create({
       data: {
-        Hora_atencion,
-        Hora_creacion,
-        Hora_termina,
+        hora_creacion,
         descripcion,
+        id_tecnico,
       },
     });
     return res.status(201).json(test);
@@ -29,10 +28,15 @@ export const createTest = async (req, res) => {
 };
 
 export const updateTest = async (req, res) => {
+  const { hora_creacion, descripcion, id_tecnico } = req.body;
   try {
     const testActualizado = await prisma.Prueba.update({
       where: { id_prueba: Number(req.params.id) },
-      data: req.body,
+      data: {
+        hora_creacion,
+        descripcion,
+        id_tecnico,
+      },
     });
     if (!testActualizado)
       return res.status(404).json({ error: "Usuario no encontrado" });

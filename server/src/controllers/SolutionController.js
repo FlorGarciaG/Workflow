@@ -12,14 +12,14 @@ export const getSolutions = async (req, res) => {
 };
 
 export const createSolution = async (req, res) => {
-  const { Hora_atencion, Hora_creacion, Hora_termina, descripcion } = req.body;
+  const { hora_creacion, descripcion, id_solucionador, id_tarea } = req.body;
   try {
     const solution = await prisma.Solucion.create({
       data: {
-        Hora_atencion,
-        Hora_creacion,
-        Hora_termina,
+        hora_creacion,
         descripcion,
+        id_solucionador,
+        id_tarea,
       },
     });
     return res.status(201).json(solution);
@@ -31,7 +31,7 @@ export const createSolution = async (req, res) => {
 export const getSolutionById = async (req, res) => {
   try {
     const solution = await prisma.Solucion.findUnique({
-      where: { id_solucion: Number(req.params.id), },
+      where: { id_solucion: Number(req.params.id) },
     });
     return res.status(200).json(solution);
   } catch (error) {
@@ -42,7 +42,7 @@ export const getSolutionById = async (req, res) => {
 export const deleteSolution = async (req, res) => {
   try {
     await prisma.Solucion.delete({
-      where: { id_solucion: Number(req.params.id), },
+      where: { id_solucion: Number(req.params.id) },
     });
     return res.status(204).json();
   } catch (error) {
@@ -51,15 +51,15 @@ export const deleteSolution = async (req, res) => {
 };
 
 export const updateSolution = async (req, res) => {
-  const { Hora_atencion, Hora_creacion, Hora_termina, descripcion } = req.body;
+  const { hora_creacion, descripcion, id_solucionador, id_tarea } = req.body;
   try {
     const solution = await prisma.Solucion.update({
-      where: { id_solucion: Number(req.params.id), },
+      where: { id_solucion: Number(req.params.id) },
       data: {
-        Hora_atencion,
-        Hora_creacion,
-        Hora_termina,
+        hora_creacion,
         descripcion,
+        id_solucionador,
+        id_tarea,
       },
     });
     return res.status(200).json(solution);
