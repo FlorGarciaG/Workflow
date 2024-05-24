@@ -50,6 +50,7 @@ function IncidenciasUser() {
                 <hr />
                 <div className={`d-flex flex-wrap justify-content-center gap-2 ${styles.btns}`}>
                   <button className={`mb-2 ${styles.btnD}`} onClick={() => setModalShowDetalle(true)}>Detalles</button>
+                  <button className={`mb-2 ${styles.btn}`} onClick={() => setModalShowDetalle(true)}>Atencion</button>
                 </div>
               </div>
             </div>
