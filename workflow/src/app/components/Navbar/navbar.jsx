@@ -8,24 +8,33 @@ import {
   NavbarToggle,
   NavbarCollapse,
   NavLink,
-  NavDropdown,
 } from "react-bootstrap";
 import styles from "./navbar.module.css";
 
 
 function NavBar() {
+
   return (
-    <Navbar className="bg-body-tertiary">
+    <Navbar
+      className={` bg-body-tertiary py-4 ${styles.navbar}`}
+      expand="lg"
+      variant="dark"
+    >
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            
+        <NavbarBrand className={styles.links} href="#home">
+          QuickFix
+        </NavbarBrand>
+        <NavbarToggle aria-controls="responsive-navbar-nav" />
+        <NavbarCollapse id="responsive-navbar-nav">
+          <Nav className="ms-auto">
+            <NavLink className={styles.links} href="#home">
+              Tareas terminadas
+            </NavLink>
+            <NavLink className={styles.links} href="#link">
+              Incidencias
+            </NavLink>
           </Nav>
-        </Navbar.Collapse>
+        </NavbarCollapse>
       </Container>
     </Navbar>
   );

@@ -1,8 +1,9 @@
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        
+      
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <div className="page-container">
-          <NavBar />
+          <NavBar/>
           <div className="content-wrapper">{children}</div>
           <Footer />
         </div>
