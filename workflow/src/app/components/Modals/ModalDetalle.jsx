@@ -1,70 +1,85 @@
 import { useState } from "react";
 import { Badge, Button, Form, Modal, Table } from "react-bootstrap";
 import styles from "./page.module.css";
+import ModalRevision from "./ModalRevision";
 
-function ModalDetalle(props) {
-    return (
-        <Modal
+function ModalDetalle({ onOpenRevision, ...props }) {
+  return (
+    <>
+      <Modal
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        >
+      >
         <Modal.Header closeButton>
-            <Modal.Title>Titulo 1</Modal.Title>
+          <Modal.Title>Titulo 1</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Table hover size="sm" className={styles.table}>
+          <Table hover size="sm" className={styles.table}>
             <tbody>
-                <tr>
+              <tr>
                 <td className={styles.tdBadge}>
-                    <Badge className={styles.badge}>Descripción</Badge>
+                  <Badge className={styles.badge}>Descripción</Badge>
                 </td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos doloribus quos quam sunt in possimus illum autem eligendi accusamus dolor maxime quod, temporibus quis quidem tenetur fuga! Id, beatae nostrum?</td>
-                </tr>
-                <tr>
                 <td>
-                    <Badge className={styles.badge}>Fecha de creación</Badge>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
+                  doloribus quos quam sunt in possimus illum autem eligendi
+                  accusamus dolor maxime quod, temporibus quis quidem tenetur
+                  fuga! Id, beatae nostrum?
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Badge className={styles.badge}>Fecha de creación</Badge>
                 </td>
                 <td>23/mayo/2024</td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                 <td>
-                    <Badge className={styles.badge}>Evidencia</Badge>
+                  <Badge className={styles.badge}>Evidencia</Badge>
                 </td>
                 <td>evidencia.jpg</td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                 <td>
-                    <Badge className={styles.badge}>Estatus</Badge>
+                  <Badge className={styles.badge}>Estatus</Badge>
                 </td>
                 <td>En curso</td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                 <td>
-                    <Badge className={styles.badge}>Persona asignada para solución</Badge>
+                  <Badge className={styles.badge}>
+                    Persona asignada para solución
+                  </Badge>
                 </td>
                 <td>Juan Ramirez Ramirez</td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                 <td>
-                    <Badge className={styles.badge}>Persona asignada para pruebas</Badge>
+                  <Badge className={styles.badge}>
+                    Persona asignada para pruebas
+                  </Badge>
                 </td>
                 <td>Maria Pérez Gómez</td>
-                </tr>
+              </tr>
             </tbody>
-            </Table>
+          </Table>
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={props.onHide} className={`${styles.buttonHistorial}`}>
+          <Button
+            onClick={onOpenRevision}
+            className={`${styles.buttonHistorial}`}
+          >
             Historial de soluciones y revisiones
-            </Button>
-            <Button onClick={props.onHide} className={`${styles.buttonClose2}`}>
+          </Button>
+          <Button onClick={props.onHide} className={`${styles.buttonClose2}`}>
             Cerrar
-            </Button>
+          </Button>
         </Modal.Footer>
-        </Modal>
-    );
+      </Modal>
+    </>
+  );
 }
 
 export default ModalDetalle;

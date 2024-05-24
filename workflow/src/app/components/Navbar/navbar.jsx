@@ -26,7 +26,7 @@ function NavBar() {
             <NavbarToggle aria-controls="responsive-navbar-nav" />
             <NavbarCollapse id="responsive-navbar-nav">
             <Nav className="ms-auto gap-2">
-                <NavLink className={styles.links} href="#home">
+                <NavLink className={styles.links} href="/pages/user/terminadoUser">
                 Tareas terminadas
                 </NavLink>
                 <NavLink className={styles.links} href="/pages/user/incidenciasUser">
@@ -35,7 +35,7 @@ function NavBar() {
                 <Button variant="light" className={styles.boton} href="/pages/login">
                 Ingresar
                 </Button>
-                <Button variant="light" className={styles.boton} href="#link">
+                <Button variant="light" className={styles.boton} href="/">
                 Salir
                 </Button>
             </Nav>
