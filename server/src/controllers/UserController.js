@@ -29,3 +29,48 @@ export const createUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const updateUser = async (req, res) => {
+  try {
+    const testActualizado = await prisma.Usuario.update({
+      where: { id_usuario: Number(req.params.id) },
+      data: req.body,
+    });
+    if (!testActualizado)
+      return res.status(404).json({ error: "Tarea no encontrada" });
+    res.status(200).json(testActualizado);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", message: error.message });
+  }
+};
+
+export const getUserById = async (req, res) => {
+  try {
+    const test = await prisma.Usuario.findUnique({
+      where: { id_usuario: Number(req.params.id) },
+    });
+    if (!test) return res.status(404).json({ error: "Tarea no encontrada" });
+    res.status(200).json(test);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", message: error.message });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    const userEliminado = await prisma.Usuario.delete({
+      where: { id_usuario: Number(req.params.id) },
+    });
+    if (!userEliminado)
+      return res.status(404).json({ error: "Camionero no encontrado" });
+    res.status(200).json(userEliminado);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", message: error.message });
+  }
+};
