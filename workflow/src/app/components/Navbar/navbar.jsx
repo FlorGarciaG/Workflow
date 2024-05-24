@@ -11,10 +11,8 @@ import {
     Button,
 } from "react-bootstrap";
 import styles from "./navbar.module.css";
-import { signOut, useSession } from "next-auth/react";
 
 function NavBar() {
-    const session = useSession();
     return (
         <Navbar
             className={` bg-body-tertiary py-4 ${styles.navbar}`}
@@ -37,11 +35,9 @@ function NavBar() {
                         <Button variant="light" className={styles.boton} href="/pages/login">
                             Ingresar
                         </Button>
-                        {session.status === "authenticated" && (
                             <Button variant="light" className={styles.boton} href="/">
                                 Salir
                             </Button>
-                        )}
 
                     </Nav>
                 </NavbarCollapse>
