@@ -10,6 +10,7 @@ export const getSolutions = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+// Compare this snippet from server/src/controllers/SolutionController.js:
 
 export const createSolution = async (req, res) => {
   const { hora_creacion, descripcion, id_solucionador, id_tarea } = req.body;
