@@ -62,6 +62,25 @@ app.post("/upload", upload.single("file"), (req, res) => {
   }
 });
 
+// Ruta para listar todos los archivos disponibles en 'ima/'
+app.get('/listFiles', (req, res) => {
+  try {
+    const directoryPath = path.join(__dirname, 'uploads');
+    // Lee el contenido del directorio 'ima/'
+    fs.readdir(directoryPath, (err, files) => {
+      if (err) {
+        console.error('Error al leer el directorio:', err);
+        res.status(500).send('Error al listar archivos.');
+      } else {
+        res.status(200).json(files);
+      }
+    });
+  } catch (error) {
+    console.error('Error en la ruta /listFiles:', error);
+    res.status(500).send('Error interno del servidor.');
+  }
+});
+
 // Ruta para obtener un archivo (solo para fines de ejemplo)
 app.get("/file/:filename", (req, res) => {
   try {
@@ -72,6 +91,7 @@ app.get("/file/:filename", (req, res) => {
       res.status(404).send("File not found.");
     }
   } catch (error) {
+    console.log('Hay un error en la ruta /file/:filename');
     res.status(500).send(error);
   }
 });
