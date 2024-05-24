@@ -9,7 +9,6 @@ import path from "path";
 import TaskRoutes from "./routes/task.routes.js";
 import UserRoutes from "./routes/user.routes.js";
 import SolutionRoutes from "./routes/solution.routes.js";
-import SolxpruRoutes from "./routes/solxpru.routes.js";
 import TestRoutes from "./routes/test.routes.js";
 import AuthRoutes from "./routes/auth.routes.js";
 
@@ -82,7 +81,6 @@ app.use("/api", AuthRoutes);
 app.use("/api/tasks", TaskRoutes);
 app.use("/api/users", UserRoutes);
 app.use("/api/solutions", SolutionRoutes);
-app.use("/api/solxprus", SolxpruRoutes);
 app.use("/api/tests", TestRoutes);
 
 //Export

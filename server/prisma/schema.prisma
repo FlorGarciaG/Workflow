@@ -8,64 +8,60 @@ datasource db {
 }
 
 model Usuario {
-  id_usuario  Int      @id @default(autoincrement())
-  nombre      String
-  ap_paterno  String
-  ap_materno  String
-  correo      String   @unique
-  contrasenia String
-  rol         String
-  tareas      Tareas[]
+  id_usuario                             Int      @id @default(autoincrement())
+  nombre                                 String   @db.VarChar(50)
+  ap_paterno                             String   @db.VarChar(50)
+  ap_materno                             String   @db.VarChar(50)
+  correo                                 String   @unique(map: "correo") @db.VarChar(50)
+  contrasenia                            String   @db.VarChar(200)
+  rol                                    String   @db.VarChar(50)
+  Tareas_Tareas_id_creoToUsuario         Tareas[] @relation("Tareas_id_creoToUsuario")
+  Tareas_Tareas_id_solucionadorToUsuario Tareas[] @relation("Tareas_id_solucionadorToUsuario")
+  Tareas_Tareas_id_pruebaToUsuario       Tareas[] @relation("Tareas_id_pruebaToUsuario")
 }
 
 model Tareas {
-  id_tarea      Int       @id @default(autoincrement())
-  Titulo        String
-  descripcion   String
-  Evidencia     String
-  estado        String
-  id_usuario    Int
+  id_tarea                                  Int        @id @default(autoincrement())
+  titulo                                    String     @db.VarChar(50)
+  descripcion                               String     @db.VarChar(120)
+  evidencias                                String     @db.VarChar(50)
+  estado                                    String     @db.VarChar(30)
+  hora_creacion                             DateTime   @db.DateTime(0)
+  hora_termina                              DateTime   @db.DateTime(0)
+  id_creo                                   Int
+  id_solucionador                           Int
+  id_prueba                                 Int
+  Solucion_Solucion_id_solucionadorToTareas Solucion[] @relation("Solucion_id_solucionadorToTareas")
+  Solucion_Solucion_id_tareaToTareas        Solucion[] @relation("Solucion_id_tareaToTareas")
+  Usuario_Tareas_id_creoToUsuario           Usuario    @relation("Tareas_id_creoToUsuario", fields: [id_creo], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "Tareas_ibfk_1")
+  Usuario_Tareas_id_solucionadorToUsuario   Usuario    @relation("Tareas_id_solucionadorToUsuario", fields: [id_solucionador], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "Tareas_ibfk_2")
+  Usuario_Tareas_id_pruebaToUsuario         Usuario    @relation("Tareas_id_pruebaToUsuario", fields: [id_prueba], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "Tareas_ibfk_3")
 
-  Hora_creacion DateTime  @default(now())
-  Hora_termina  DateTime
-
-  solxprus      SolxPru[]
-  usuario       Usuario   @relation(fields: [id_usuario], references: [id_usuario])
-
-  @@index([id_usuario], map: "Tareas_id_usuario_fkey")
-}
-
-model SolxPru {
-  id_solxpru  Int      @id @default(autoincrement())
-  id_solucion Int
-  id_prueba   Int
-  id_tarea    Int
-
-  prueba      Prueba   @relation(fields: [id_prueba], references: [id_prueba])
-  solucion    Solucion @relation(fields: [id_solucion], references: [id_solucion])
-  tarea       Tareas   @relation(fields: [id_tarea], references: [id_tarea])
-
-  @@index([id_prueba], map: "SolxPru_id_prueba_fkey")
-  @@index([id_solucion], map: "SolxPru_id_solucion_fkey")
-  @@index([id_tarea], map: "SolxPru_id_tarea_fkey")
+  @@index([id_creo], map: "id_creo")
+  @@index([id_prueba], map: "id_prueba")
+  @@index([id_solucionador], map: "id_solucionador")
 }
 
 model Solucion {
-  id_solucion   Int       @id @default(autoincrement())
-  Hora_atencion DateTime
-  Hora_creacion DateTime  @default(now())
-  Hora_termina  DateTime
-  descripcion   String
+  id_solucion                             Int      @id @default(autoincrement())
+  hora_creacion                           DateTime @db.Timestamp(0)
+  descripcion                             String   @db.VarChar(120)
+  id_solucionador                         Int
+  id_tarea                                Int
+  Prueba                                  Prueba[]
+  Tareas_Solucion_id_solucionadorToTareas Tareas   @relation("Solucion_id_solucionadorToTareas", fields: [id_solucionador], references: [id_tarea], onDelete: NoAction, onUpdate: NoAction, map: "fk$sol$sol$id")
+  Tareas_Solucion_id_tareaToTareas        Tareas   @relation("Solucion_id_tareaToTareas", fields: [id_tarea], references: [id_tarea], onDelete: NoAction, onUpdate: NoAction, map: "fk$sol$tar$id")
 
-  tareas        SolxPru[]
+  @@index([id_solucionador], map: "fk$sol$sol$id")
+  @@index([id_tarea], map: "fk$sol$tar$id")
 }
 
 model Prueba {
-  id_prueba     Int       @id @default(autoincrement())
-  Hora_atencion DateTime
-  Hora_creacion DateTime  @default(now())
-  Hora_termina  DateTime
-  descripcion   String
-  
-  tareas        SolxPru[]
+  id_prueba     Int      @id @default(autoincrement())
+  hora_creacion DateTime @db.Timestamp(0)
+  descripcion   String   @db.VarChar(120)
+  id_tecnico    Int
+  Solucion      Solucion @relation(fields: [id_tecnico], references: [id_solucion], onDelete: NoAction, onUpdate: NoAction, map: "fk$prueb$tecni$id")
+
+  @@index([id_tecnico], map: "fk$prueb$tecni$id")
 }
