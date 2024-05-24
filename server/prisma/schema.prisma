@@ -20,15 +20,15 @@ model Usuario {
 
 model Tareas {
   id_tarea      Int       @id @default(autoincrement())
-  id_usuario    Int
-  tarea         String
-  fecha         DateTime
-  Evidencia     String
   Titulo        String
   descripcion   String
+  Evidencia     String
   estado        String
+  id_usuario    Int
+
   Hora_creacion DateTime  @default(now())
   Hora_termina  DateTime
+
   solxprus      SolxPru[]
   usuario       Usuario   @relation(fields: [id_usuario], references: [id_usuario])
 
@@ -40,6 +40,7 @@ model SolxPru {
   id_solucion Int
   id_prueba   Int
   id_tarea    Int
+
   prueba      Prueba   @relation(fields: [id_prueba], references: [id_prueba])
   solucion    Solucion @relation(fields: [id_solucion], references: [id_solucion])
   tarea       Tareas   @relation(fields: [id_tarea], references: [id_tarea])
@@ -55,6 +56,7 @@ model Solucion {
   Hora_creacion DateTime  @default(now())
   Hora_termina  DateTime
   descripcion   String
+
   tareas        SolxPru[]
 }
 
@@ -64,5 +66,6 @@ model Prueba {
   Hora_creacion DateTime  @default(now())
   Hora_termina  DateTime
   descripcion   String
+  
   tareas        SolxPru[]
 }
