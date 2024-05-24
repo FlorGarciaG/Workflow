@@ -7,14 +7,14 @@ import ModalDetalle from "@/app/components/Modals/ModalDetalle";
 import { FaPlusCircle } from "react-icons/fa";
 
 function incidenciasUser() {
-  const [modalShow, setModalShow] = React.useState(false);
-
+  const [modalShowDetalle, setModalShowDetalle] = React.useState(false);
+  const [modalShowCreate, setModalShowCreate] = React.useState(false);
   return (
     <>
       <Container className="my-4">
         <Row className=" mb-3">
           <Col className="d-flex  flex-row-reverse mb-3">
-            <Button className={`${styles.crear}`} onClick={() => setModalShow(true)}>Crear Incidencia <FaPlusCircle /></Button>
+            <Button  className={`${styles.crear}`} onClick={() => setModalShowCreate(true)}>Crear Incidencia <FaPlusCircle /></Button>
           </Col>
         </Row>
         <Row>
@@ -31,7 +31,7 @@ function incidenciasUser() {
               </div>
               <hr />
               <div className={`d-flex flex-wrap justify-content-center gap-2 ${styles.btns}`}>
-                <button className={`mb-2 ${styles.btnD}`}  onClick={() => setModalShow(true)}>Detalles</button>
+                <button className={`mb-2 ${styles.btnD}`}  onClick={() => setModalShowDetalle(true)}>Detalles</button>
                 {/* <button className={styles.btn}>Asignar</button> */}
                 {/* <button className={`mb-2 ${styles.btn}`}>Atención</button> */}
               </div>
@@ -44,8 +44,13 @@ function incidenciasUser() {
       </Container>
 
       <ModalDetalle
-        show={modalShow}
-        onHide={() => setModalShow(false)}
+        show={modalShowDetalle}
+        onHide={() => setModalShowDetalle(false)}
+      />
+
+      <ModalCreate
+        show={modalShowCreate}
+        onHide={() => setModalShowCreate(false)}
       />
     </>
   );
