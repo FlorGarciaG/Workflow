@@ -7,24 +7,25 @@ export const getTasks = async (req, res) => {
     const tasks = await prisma.Tareas.findMany();
     return res.status(200).json(tasks);
   }catch (error) {
-    res.status(500).json({ message: 'Something went wrong' });
+    res.status(500).json({ message: error.message });
   }
 };
 
-export const postTask = async (req, res) => {
+export const createTask = async (req, res) => {
+  const { Titulo, descripcion, Evidencia, estado, id_Usuario, Hora_termina } = req.body;
   try {
-    const { nombre, descripcion, evidencias, estado, id_Usuario } = req.body;
     const task = await prisma.Tareas.create({
       data: {
-        nombre,
+        Titulo,
         descripcion,
-        evidencias,
+        Evidencia,
         estado,
-        id_Usuario
-      }
+        id_Usuario,
+        Hora_termina
+      },
     });
-    return res.status(200).json(task);
+    return res.status(201).json(task);
   } catch (error) {
-    res.status(500).json({ message: 'Something went wrong' });
+    res.status(500).json({ message: error.message });
   }
 };
