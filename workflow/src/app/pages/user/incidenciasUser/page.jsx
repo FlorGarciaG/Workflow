@@ -2,14 +2,17 @@
 import React from "react";
 import styles from "./page.module.css";
 import { Row, Col, Container, Button, Card } from "react-bootstrap";
+import ModalCreate from "@/app/components/Modals/ModalCreate";
 
 function incidenciasUser() {
+  const [modalShow, setModalShow] = React.useState(false);
+
   return (
     <>
       <Container className="my-4">
         <Row className=" mb-3">
           <Col className="d-flex  flex-row-reverse mb-3">
-            <Button className={styles.crear}>Crear Incidencia</Button>
+            <Button className={styles.crear} onClick={() => setModalShow(true)}>Crear Incidencia</Button>
           </Col>
         </Row>
         <Row>
@@ -37,6 +40,11 @@ function incidenciasUser() {
           
         </Row>
       </Container>
+
+      <ModalCreate
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </>
   );
 }

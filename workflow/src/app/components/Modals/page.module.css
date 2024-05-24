@@ -1,0 +1,13 @@
+.button{
+    background: #EF8354;
+    border: none;
+}
+
+.buttonClose{
+    background: #4F5D75;
+    border: none;
+}
+
+.label{
+    font-weight: 500;
+}
