@@ -10,12 +10,14 @@ import { FaPlusCircle } from "react-icons/fa";
 import ModalAtencion from "@/app/components/Modals/ModalAtencion";
 import { useAuth } from "@/app/context/AuthContext";
 import api from "../../../api/axios";
+import ModalAsignacion from "@/app/components/Modals/ModalAsignacion";
 
 function IncidenciasUser() {
   const [modalShowDetalle, setModalShowDetalle] = React.useState(false);
   const [modalShowCreate, setModalShowCreate] = React.useState(false);
   const [modalShowRevision, setModalShowRevision] = React.useState(false);
   const [modalShowAtencion, setModalShowAtencion] = React.useState(false);
+  const [modalShowAsignacion, setModalShowAsignacion] = React.useState(false);
 
   const [ getUser, setUser ] = useState([]);
 
@@ -51,12 +53,14 @@ function IncidenciasUser() {
         <Container className="my-4">
           <Row className=" mb-3">
             <Col className="d-flex  flex-row-reverse mb-3">
+            {rol !== "tecnico" && rol !== "coordinador" && (
               <Button
                 className={`${styles.crear}`}
                 onClick={() => setModalShowCreate(true)}
               >
                 Crear Incidencia <FaPlusCircle />
               </Button>
+            )}
             </Col>
           </Row>
           <Row>
@@ -95,6 +99,14 @@ function IncidenciasUser() {
                         Atencion
                       </button>
                     )}
+                    {rol !== "general" && rol !== "tecnico" && (
+                      <button
+                        className={`mb-2 ${styles.btn}`}
+                        onClick={() => setModalShowAsignacion(true)}
+                      >
+                        Asignar
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -123,6 +135,11 @@ function IncidenciasUser() {
           show={modalShowAtencion}
           onHide={() => setModalShowAtencion(false)}
         />
+
+        <ModalAsignacion
+        show={modalShowAsignacion}
+        onHide={() => setModalShowAsignacion(false)}
+      />
       </>
     );
   }
