@@ -29,6 +29,7 @@
 .crear{
     background-color:#DB5461 ;
     border: none !important;
+    align-self: center;
 }
 
 .btnD{

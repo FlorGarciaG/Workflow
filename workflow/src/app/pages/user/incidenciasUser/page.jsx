@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { Row, Col, Container, Button, Card } from "react-bootstrap";
 import ModalCreate from "@/app/components/Modals/ModalCreate";
 import ModalDetalle from "@/app/components/Modals/ModalDetalle";
+import { FaPlusCircle } from "react-icons/fa";
 
 function incidenciasUser() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -13,7 +14,7 @@ function incidenciasUser() {
       <Container className="my-4">
         <Row className=" mb-3">
           <Col className="d-flex  flex-row-reverse mb-3">
-            <Button className={styles.crear} onClick={() => setModalShow(true)}>Crear Incidencia</Button>
+            <Button className={`${styles.crear}`} onClick={() => setModalShow(true)}>Crear Incidencia <FaPlusCircle /></Button>
           </Col>
         </Row>
         <Row>
