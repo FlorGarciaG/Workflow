@@ -18,11 +18,20 @@ export const AuthProvider = ({ children }) => {
   const [isAuthen, setIsAuthen] = useState(false);
   const [errors, setErrors] = useState([]);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setIsAuthen(true);
+    }
+  }, []);
+
   const singin = async (user) => {
     try {
       const res = await loginRequest(user);
       setIsAuthen(true);
       setUser(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data));
       console.log("Hay acceso al sistema");
     } catch (error) {
       Swal.fire({

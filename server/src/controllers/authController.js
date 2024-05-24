@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import crypto from "crypto";
 
 const prisma = new PrismaClient();
-
+0
 export const login = async (req, res) => {
   const { correo, contrasenia } = req.body;
   try {
