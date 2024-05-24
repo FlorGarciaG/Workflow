@@ -29,12 +29,16 @@ function NavBar() {
                 <NavbarToggle aria-controls="responsive-navbar-nav" />
                 <NavbarCollapse id="responsive-navbar-nav">
                     <Nav className="ms-auto gap-2">
+                    {isAuthen && (
                         <NavLink className={styles.links} href="/pages/user/terminadoUser">
                             Tareas terminadas
                         </NavLink>
+                        )}
+                        {isAuthen && (
                         <NavLink className={styles.links} href="/pages/user/incidenciasUser">
                             Incidencias
                         </NavLink>
+                        )}
                         {isAuthen && (
                             <Button variant="light" className={styles.boton} href="/">
                                 Salir
