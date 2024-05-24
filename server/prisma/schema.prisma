@@ -8,62 +8,61 @@ datasource db {
 }
 
 model Usuario {
-  id_usuario  Int    @id @default(autoincrement())
+  id_usuario  Int      @id @default(autoincrement())
   nombre      String
   ap_paterno  String
   ap_materno  String
-  correo      String @unique
+  correo      String   @unique
   contrasenia String
   rol         String
-
-  tareas Tareas[] // Un usuario puede tener muchas tareas
+  tareas      Tareas[]
 }
 
 model Tareas {
-  id_tarea      Int      @id @default(autoincrement())
+  id_tarea      Int       @id @default(autoincrement())
+  id_usuario    Int
+  tarea         String
+  fecha         DateTime
+  Evidencia     String
   Titulo        String
   descripcion   String
-  Evidencia     String
   estado        String
-  Hora_creacion DateTime @default(now())
+  Hora_creacion DateTime  @default(now())
   Hora_termina  DateTime
+  solxprus      SolxPru[]
+  usuario       Usuario   @relation(fields: [id_usuario], references: [id_usuario])
 
-  id_usuario Int
-  tarea      String
-  fecha      DateTime
-
-  usuario Usuario @relation(fields: [id_usuario], references: [id_usuario])
-
-  solxprus SolxPru[] // Una tarea puede tener muchos SolxPru
+  @@index([id_usuario], map: "Tareas_id_usuario_fkey")
 }
 
 model SolxPru {
-  id_solxpru  Int @id @default(autoincrement())
+  id_solxpru  Int      @id @default(autoincrement())
   id_solucion Int
   id_prueba   Int
   id_tarea    Int
+  prueba      Prueba   @relation(fields: [id_prueba], references: [id_prueba])
+  solucion    Solucion @relation(fields: [id_solucion], references: [id_solucion])
+  tarea       Tareas   @relation(fields: [id_tarea], references: [id_tarea])
 
-  solucion Solucion? @relation(fields: [id_solucion], references: [id_solucion]) // Relación opcional
-  prueba   Prueba?   @relation(fields: [id_prueba], references: [id_prueba]) // Relación opcional
-  tarea    Tareas    @relation(fields: [id_tarea], references: [id_tarea]) // Relación obligatoria
+  @@index([id_prueba], map: "SolxPru_id_prueba_fkey")
+  @@index([id_solucion], map: "SolxPru_id_solucion_fkey")
+  @@index([id_tarea], map: "SolxPru_id_tarea_fkey")
 }
 
 model Solucion {
-  id_solucion   Int      @id @default(autoincrement())
-  descripcion   String
-  Hora_creacion DateTime @default(now())
+  id_solucion   Int       @id @default(autoincrement())
   Hora_atencion DateTime
+  Hora_creacion DateTime  @default(now())
   Hora_termina  DateTime
-
-  tareas SolxPru[] // Una solución puede estar en muchas tareas SolxPru
+  descripcion   String
+  tareas        SolxPru[]
 }
 
 model Prueba {
-  id_prueba     Int      @id @default(autoincrement())
-  descripcion   String
-  Hora_creacion DateTime @default(now())
+  id_prueba     Int       @id @default(autoincrement())
   Hora_atencion DateTime
+  Hora_creacion DateTime  @default(now())
   Hora_termina  DateTime
-
-  tareas SolxPru[] // Una prueba puede estar en muchas tareas SolxPru
+  descripcion   String
+  tareas        SolxPru[]
 }
