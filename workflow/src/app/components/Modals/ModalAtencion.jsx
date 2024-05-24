@@ -45,6 +45,9 @@ function ModalAtencion(props) {
                 <Button onClick={props.onHide} className={`${styles.buttonClose}`}>
                     Cerrar
                 </Button>
+                <Button onClick={props.onHide} className={`${styles.buttonhistorial2}`}>
+                    Historial de soluciones
+                </Button>
                 <Button onClick={props.onHide} className={`${styles.button}`}>
                     Devolver
                 </Button>
