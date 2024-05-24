@@ -4,6 +4,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import multer from "multer";
 import fs from 'fs';
+import path from 'path';
 
 import TaskRoutes from "./routes/task.routes.js";
 import UserRoutes from "./routes/user.routes.js";
@@ -28,6 +29,45 @@ app.use(cors(`origin: "http://localhost:${process.env.PORT_FRONT}", credentials:
 console.log(`origin: "http://localhost:${process.env.PORT_FRONT}", credentials: true,`);
 app.use(express.json());
 app.use(morgan("dev"));
+
+// Configuración de Multer para almacenar archivos en el directorio 'uploads'
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Directorio donde se guardarán los archivos subidos
+  },
+  filename: (req, file, cb) => {
+    // Genera un nombre único para el archivo
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
+
+app.use(express.json());
+
+// Ruta para subir cualquier tipo de archivo
+app.post('/upload', upload.single('file'), (req, res) => {
+  try {
+    res.status(200).send('File uploaded.');
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// Ruta para obtener un archivo (solo para fines de ejemplo)
+app.get('/file/:filename', (req, res) => {
+  try {
+    const filepath = path.join(__dirname, 'uploads', req.params.filename);
+    if (fs.existsSync(filepath)) {
+      res.sendFile(filepath);
+    } else {
+      res.status(404).send('File not found.');
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 //Routes
 app.use("/api/tasks", TaskRoutes);
