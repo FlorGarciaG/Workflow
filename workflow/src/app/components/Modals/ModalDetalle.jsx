@@ -3,14 +3,7 @@ import { Badge, Button, Form, Modal, Table } from "react-bootstrap";
 import styles from "./page.module.css";
 import ModalRevision from "./ModalRevision";
 
-function ModalDetalle(props) {
-  const [modalShow, setModalShow] = useState(false);
-
-  const handleOpenRevisionModal = () => {
-    setModalShow(true);
-    props.onHide(); 
-  };
-
+function ModalDetalle({ onOpenRevision, ...props }) {
   return (
     <>
       <Modal
@@ -75,7 +68,7 @@ function ModalDetalle(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={handleOpenRevisionModal}
+            onClick={onOpenRevision}
             className={`${styles.buttonHistorial}`}
           >
             Historial de soluciones y revisiones
@@ -85,11 +78,6 @@ function ModalDetalle(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      <ModalRevision
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
     </>
   );
 }

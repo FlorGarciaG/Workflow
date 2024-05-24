@@ -1,14 +1,26 @@
 "use client";
 import React from "react";
 import styles from "./page.module.css";
-import { Row, Col, Container, Button, Card } from "react-bootstrap";
+import { Row, Col, Container, Button } from "react-bootstrap";
 import ModalCreate from "@/app/components/Modals/ModalCreate";
 import ModalDetalle from "@/app/components/Modals/ModalDetalle";
+import ModalRevision from "@/app/components/Modals/ModalRevision";
 import { FaPlusCircle } from "react-icons/fa";
 
-function incidenciasUser() {
+function IncidenciasUser() {
   const [modalShowDetalle, setModalShowDetalle] = React.useState(false);
   const [modalShowCreate, setModalShowCreate] = React.useState(false);
+  const [modalShowRevision, setModalShowRevision] = React.useState(false);
+
+  const handleOpenRevision = () => {
+    setModalShowDetalle(false);
+    setModalShowRevision(true);
+  };
+
+  const handleOpenDetalle = () => {
+    setModalShowRevision(false);
+    setModalShowDetalle(true);
+  };
 
   return (
     <>
@@ -43,14 +55,21 @@ function incidenciasUser() {
       <ModalDetalle
         show={modalShowDetalle}
         onHide={() => setModalShowDetalle(false)}
+        onOpenRevision={handleOpenRevision}
       />
 
       <ModalCreate
         show={modalShowCreate}
         onHide={() => setModalShowCreate(false)}
       />
+
+      <ModalRevision
+        show={modalShowRevision}
+        onHide={() => setModalShowRevision(false)}
+        onOpenDetalle={handleOpenDetalle}
+      />
     </>
   );
 }
 
-export default incidenciasUser;
+export default IncidenciasUser;
