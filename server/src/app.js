@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import multer from "multer";
+import fs from 'fs';
 
 import TaskRoutes from "./routes/task.routes.js";
 import UserRoutes from "./routes/user.routes.js";
@@ -22,7 +24,8 @@ console.log(URI);
 app.set("port", process.env.PORT ? process.env.PORT : 5001);
 
 //Middlewares
-app.use(cors());
+app.use(cors(`origin: "http://localhost:${process.env.PORT_FRONT}", credentials: true,`));
+console.log(`origin: "http://localhost:${process.env.PORT_FRONT}", credentials: true,`);
 app.use(express.json());
 app.use(morgan("dev"));
 
