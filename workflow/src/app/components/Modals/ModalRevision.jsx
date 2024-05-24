@@ -6,12 +6,12 @@ function ModalRevision(props) {
     return (
         <Modal
             {...props}
-            size="lg"
+            size="sm"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title>Descripciones</Modal.Title>
+                <Modal.Title>Atención</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Table striped bordered hover>

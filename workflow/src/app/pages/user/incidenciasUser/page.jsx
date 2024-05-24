@@ -9,6 +9,7 @@ import { FaPlusCircle } from "react-icons/fa";
 function incidenciasUser() {
   const [modalShowDetalle, setModalShowDetalle] = React.useState(false);
   const [modalShowCreate, setModalShowCreate] = React.useState(false);
+  const [modalShowHistorial, setModalShowHistorial] = React.useState(false);
   return (
     <>
       <Container className="my-4">
@@ -52,6 +53,9 @@ function incidenciasUser() {
         show={modalShowCreate}
         onHide={() => setModalShowCreate(false)}
       />
+
+
+      
     </>
   );
 }
