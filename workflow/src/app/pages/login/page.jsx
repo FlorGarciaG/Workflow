@@ -7,14 +7,14 @@ import { Row, Col, Container } from "react-bootstrap";
 function Login() {
     return (
         <>
-            <Container className="d-flex justify-content-center align-items-center min-vh-100">
-                <Row>   
-                    <Col md={24} className="m-4">
-                        <div className={`rounded p-4 ${styles.formlogin}`}>
+            <Container className="d-flex justify-content-center align-items-center">
+                <div className="p-5">   
+                    <Col md={12} className="m-4">
+                        <div className={` p-5 ${styles.formlogin}`}>
                             <LoginForm />
                         </div>
                     </Col>
-                </Row>
+                </div>
             </Container>
         </>
     )

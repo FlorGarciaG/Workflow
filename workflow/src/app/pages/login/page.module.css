@@ -1,3 +1,4 @@
 .formlogin{
-    border: 1px dotted black;
+    border: 3px dotted #000; 
+    border-radius: 20px;
 }
