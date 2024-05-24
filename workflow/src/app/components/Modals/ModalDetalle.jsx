@@ -74,7 +74,7 @@ function ModalDetalle(props) {
           >
             Historial de soluciones y revisiones
           </Button>
-          <Button onClick={props.onHide} className={`${styles.buttonClose2}`}>
+          <Button onClick={props.onHide}  className={`${styles.buttonClose2}`}>
             Cerrar
           </Button>
         </Modal.Footer>
@@ -82,7 +82,7 @@ function ModalDetalle(props) {
 
       <ModalRevision
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={() => setModalShow(false) }
       />
     </>
   );
