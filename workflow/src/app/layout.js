@@ -3,7 +3,7 @@ import "./globals.css";
 import NavBar from "./components/Navbar/navbar";
 import Footer from "./components/Footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { AuthProvider } from "./context/userContext";
+import { AuthProvider } from "./context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -22,7 +22,9 @@ export const AuthProvider = ({ children }) => {
       const res = await loginRequest(user);
       setIsAuthen(true);
       setUser(res.data);
+      console.log("Hay acceso al sistema");
     } catch (error) {
+      console.log("No Hay acceso al sistema");
       console.log(error);
     }
   };

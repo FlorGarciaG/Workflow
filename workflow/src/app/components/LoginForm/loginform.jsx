@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, Container } from "react-bootstrap";
 import styles from "./page.module.css";
-import { useAuth } from "@/app/context/userContext";
+import { useAuth } from "@/app/context/AuthContext";
 
 function LoginForm() {
   const {
@@ -15,7 +15,6 @@ function LoginForm() {
   const { singin, errors: singinErrors } = useAuth();
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
     singin(data);
   });
 
@@ -35,7 +34,7 @@ function LoginForm() {
           <Form.Label className={`${styles.label}`}>Contraseña</Form.Label>
           <Form.Control
             type="password"
-            {...register("password", { required: true })}
+            {...register("contrasenia", { required: true })}
             placeholder="Ingrese la contraseña"
           />
         </div>
