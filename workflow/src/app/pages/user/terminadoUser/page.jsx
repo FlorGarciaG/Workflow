@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 import styles from "./page.module.css";
-import { Row, Col, Container, Table } from "react-bootstrap";
+import { Row, Col, Container, Table, Button } from "react-bootstrap";
 import ModalDetalle from "@/app/components/Modals/ModalDetalle";
 import ModalRevision from "@/app/components/Modals/ModalRevision";
+import { useAuth } from "@/app/context/AuthContext";
 
 function TerminadoUser() {
   const [modalShowDetalle, setModalShowDetalle] = React.useState(false);
@@ -18,7 +19,14 @@ function TerminadoUser() {
     setModalShowRevision(false);
     setModalShowDetalle(true);
   };
-
+  const { user } = useAuth();
+  if (!user) {
+    return (
+      <Row className="d-flex align-items-center p-5">
+        <Button href="/pages/login">Login</Button>
+      </Row>
+    );
+  } else {
   return (
     <>
       <Container className="my-4">
@@ -65,7 +73,7 @@ function TerminadoUser() {
         />
       )}
     </>
-  );
+  );}
 }
 
 export default TerminadoUser;
