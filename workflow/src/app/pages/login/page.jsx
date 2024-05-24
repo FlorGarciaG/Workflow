@@ -9,8 +9,8 @@ function Login() {
         <>
             <Container className="d-flex justify-content-center align-items-center">
                 <div className="p-5">   
-                    <Col md={12} className="m-4">
-                        <div className={` p-5 ${styles.formlogin}`}>
+                    <Col  className="m-4">
+                        <div className={` ${styles.formlogin}`}>
                             <LoginForm />
                         </div>
                     </Col>
