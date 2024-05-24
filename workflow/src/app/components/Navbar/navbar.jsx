@@ -20,7 +20,7 @@ function NavBar() {
         variant="dark"
         >
         <Container>
-            <NavbarBrand className={styles.links} href="#home">
+            <NavbarBrand className={styles.links} href="/">
             QuickFix
             </NavbarBrand>
             <NavbarToggle aria-controls="responsive-navbar-nav" />
@@ -29,7 +29,7 @@ function NavBar() {
                 <NavLink className={styles.links} href="#home">
                 Tareas terminadas
                 </NavLink>
-                <NavLink className={styles.links} href="#link">
+                <NavLink className={styles.links} href="/pages/user/incidenciasUser">
                 Incidencias
                 </NavLink>
                 <Button variant="light" className={styles.boton} href="/pages/login">
