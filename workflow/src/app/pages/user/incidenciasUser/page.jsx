@@ -42,6 +42,11 @@ function IncidenciasUser() {
                   voluptatum fugit nostrum alias! Possimus fugiat distinctio
                   quibusdam. .
                 </div>
+                <br />
+                <div className={`mb-2 ${styles.cardSubtitle}`}>Estatus</div>
+                <div className={styles.cardBody}>
+                  Sin asignar
+                </div>
                 <hr />
                 <div className={`d-flex flex-wrap justify-content-center gap-2 ${styles.btns}`}>
                   <button className={`mb-2 ${styles.btnD}`} onClick={() => setModalShowDetalle(true)}>Detalles</button>
