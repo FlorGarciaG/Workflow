@@ -65,7 +65,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
 // Ruta para listar todos los archivos disponibles en 'ima/'
 app.get('/listFiles', (req, res) => {
   try {
-    const directoryPath = path.join(__dirname, 'uploads');
+    const directoryPath = path.join(__dirname, '../uploads/');
     // Lee el contenido del directorio 'ima/'
     fs.readdir(directoryPath, (err, files) => {
       if (err) {
@@ -81,20 +81,6 @@ app.get('/listFiles', (req, res) => {
   }
 });
 
-// Ruta para obtener un archivo (solo para fines de ejemplo)
-app.get("/file/:filename", (req, res) => {
-  try {
-    const filepath = path.join(__dirname, "uploads", req.params.filename);
-    if (fs.existsSync(filepath)) {
-      res.sendFile(filepath);
-    } else {
-      res.status(404).send("File not found.");
-    }
-  } catch (error) {
-    console.log('Hay un error en la ruta /file/:filename');
-    res.status(500).send(error);
-  }
-});
 
 //Routes
 app.use("/api", AuthRoutes);
