@@ -5,6 +5,12 @@ import ModalRevision from "./ModalRevision";
 
 function ModalDetalle(props) {
   const [modalShow, setModalShow] = useState(false);
+
+  const handleOpenRevisionModal = () => {
+    setModalShow(true);
+    props.onHide(); 
+  };
+
   return (
     <>
       <Modal
@@ -69,12 +75,12 @@ function ModalDetalle(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={() => setModalShow(true)}
+            onClick={handleOpenRevisionModal}
             className={`${styles.buttonHistorial}`}
           >
             Historial de soluciones y revisiones
           </Button>
-          <Button onClick={props.onHide}  className={`${styles.buttonClose2}`}>
+          <Button onClick={props.onHide} className={`${styles.buttonClose2}`}>
             Cerrar
           </Button>
         </Modal.Footer>
@@ -82,7 +88,7 @@ function ModalDetalle(props) {
 
       <ModalRevision
         show={modalShow}
-        onHide={() => setModalShow(false) }
+        onHide={() => setModalShow(false)}
       />
     </>
   );
