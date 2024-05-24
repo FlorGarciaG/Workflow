@@ -1,10 +1,15 @@
 .navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background-color: #2d3142 !important;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #2d3142 !important;
 }
 
 .links {
-  color: white !important;
+    color: white !important;
+    }
+.boton{
+    background-color: white;
+    color: #2d3142;
+
 }
