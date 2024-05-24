@@ -2,10 +2,10 @@
 import React from "react";
 import styles from "./page.module.css";
 import { Row, Col, Container, Table } from "react-bootstrap";
-import ModalCreate from "@/app/components/Modals/ModalCreate";
+import ModalDetalle from "@/app/components/Modals/ModalDetalle";
 
 function terminadoUser() {
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShowDetalle, setModalShowDetalle] = React.useState(false);
 
     return (
         <>
@@ -34,7 +34,7 @@ function terminadoUser() {
                     <div
                     className={`d-flex flex-wrap justify-content-center gap-2 ${styles.btns}`}
                     >
-                    <button className={`mb-2 ${styles.btnD}`}>Detalles</button>
+                    <button className={`mb-2 ${styles.btnD}`} onClick={() => setModalShowDetalle(true)}>Detalles</button>
                     {/* <button className={styles.btn}>Asignar</button> */}
                     {/* <button className={`mb-2 ${styles.btn}`}>Atención</button> */}
                     </div>
@@ -44,8 +44,12 @@ function terminadoUser() {
             </Row>
         </Container>
 
-        <ModalCreate show={modalShow} onHide={() => setModalShow(false)} />
+        <ModalDetalle
+        show={modalShowDetalle}
+        onHide={() => setModalShowDetalle(false)}
+        />
         </>
+        
     );
 }
 
