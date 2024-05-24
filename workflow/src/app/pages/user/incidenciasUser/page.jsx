@@ -22,12 +22,12 @@ function IncidenciasUser() {
   const { user } = useAuth();
 
   const rol = user.rol;
-  const correo = user.correo;
+
   
   console.log(user);
   
 
-
+  
 
   const handleOpenRevision = () => {
     setModalShowDetalle(false);

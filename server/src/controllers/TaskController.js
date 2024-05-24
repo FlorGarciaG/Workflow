@@ -44,9 +44,11 @@ export const createTask = async (req, res) => {
 };
 
 export const getTasksById = async (req, res) => {
+  console.log(req.params);
+
   try {
-    const solution = await prisma.Tareas.findUnique({
-      where: { id_tarea: Number(req.params.id) },
+    const solution = await prisma.Tareas.findMany({
+      where: { id_creo: Number(req.params.id) },
     });
     return res.status(200).json(solution);
   } catch (error) {
