@@ -1,4 +1,4 @@
-import { Button, Table, Modal } from 'react-bootstrap';
+import { Button, Table, Modal, Row, Col } from 'react-bootstrap';
 import styles from "./page.module.css";
 
 function ModalRevision({ onOpenDetalle, ...props }) {
@@ -10,40 +10,81 @@ function ModalRevision({ onOpenDetalle, ...props }) {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="xl"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      scrollable
     >
       <Modal.Header closeButton>
         <Modal.Title>Atención</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Solución</th>
-              <th>Resolución</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>
-          </tbody>
-        </Table>
+      <Table striped bordered hover>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th colSpan={2}>Solución</th>
+      <th colSpan={2}>Resolución</th>
+    </tr>
+  </thead>
+  <thead>
+    <tr>
+      <th>.</th>
+      <td>Descripción</td>
+      <td>Datos</td>
+      <td>Descripción</td>
+      <td>Datos</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo incidunt eveniet maxime saepe illum fugit reiciendis expedita voluptatibus molestias deserunt possimus provident mollitia dolor veniam, quibusdam ullam quisquam, reprehenderit commodi!</td>
+      <td>
+        <Row >
+          <Col>lorem</Col> 
+          <Col>Dato 2</Col>
+        </Row>
+      </td>
+      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem a dolorum, officiis est maiores quos nihil pariatur similique praesentium velit perferendis necessitatibus numquam quis consequatur tenetur nesciunt? Quis, consectetur aliquam!</td>
+      <td> <Row >
+          <Col>lorem</Col> 
+          <Col>Dato 2</Col>
+        </Row></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo incidunt eveniet maxime saepe illum fugit reiciendis expedita voluptatibus molestias deserunt possimus provident mollitia dolor veniam, quibusdam ullam quisquam, reprehenderit commodi!</td>
+      <td>
+        <Row >
+          <Col>lorem</Col> 
+          <Col>Dato 2</Col>
+        </Row>
+      </td>
+      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem a dolorum, officiis est maiores quos nihil pariatur similique praesentium velit perferendis necessitatibus numquam quis consequatur tenetur nesciunt? Quis, consectetur aliquam!</td>
+      <td> <Row >
+          <Col>lorem</Col> 
+          <Col>Dato 2</Col>
+        </Row></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo incidunt eveniet maxime saepe illum fugit reiciendis expedita voluptatibus molestias deserunt possimus provident mollitia dolor veniam, quibusdam ullam quisquam, reprehenderit commodi!</td>
+      <td>
+        <Row >
+          <Col>lorem</Col> 
+          <Col>Dato 2</Col>
+        </Row>
+      </td>
+      <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem a dolorum, officiis est maiores quos nihil pariatur similique praesentium velit perferendis necessitatibus numquam quis consequatur tenetur nesciunt? Quis, consectetur aliquam!</td>
+      <td> <Row >
+          <Col>lorem</Col> 
+          <Col>Dato 2</Col>
+        </Row></td>
+    </tr>
+    
+  </tbody>
+</Table>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={handleClose} className={`${styles.buttonFinish}`}>
