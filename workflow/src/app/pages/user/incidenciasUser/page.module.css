@@ -13,11 +13,12 @@
     text-align: center;
 }
 
+
 .btnD, .btn{
     color: white;
     border: none ;
     cursor: pointer;
-    padding: 5px 30px;
+    padding: 5px 40px;
     border-radius: 10px;
     transition: background-color 0.3 ease, filter 0.3 ease;
 }
@@ -25,6 +26,10 @@
     filter: drop-shadow(0px 0px 1px #000);
 }
 
+.crear{
+    background-color:#DB5461 ;
+    border: none !important;
+}
 
 .btnD{
     background-color:#4F5D75;

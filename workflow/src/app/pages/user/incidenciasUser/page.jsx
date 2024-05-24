@@ -7,9 +7,9 @@ function incidenciasUser() {
   return (
     <>
       <Container className="my-4">
-        <Row className="mb-3">
-          <Col className="mb-3">
-            <Button className="">Crear Incidencia</Button>
+        <Row className=" mb-3">
+          <Col className="d-flex  flex-row-reverse mb-3">
+            <Button className={styles.crear}>Crear Incidencia</Button>
           </Col>
         </Row>
         <Row>
@@ -25,10 +25,10 @@ function incidenciasUser() {
                 quibusdam. .
               </div>
               <hr />
-              <div className={`d-flex flex-wrap justify-content-between ${styles.btns}`}>
+              <div className={`d-flex flex-wrap justify-content-center gap-2 ${styles.btns}`}>
                 <button className={`mb-2 ${styles.btnD}`}>Detalles</button>
                 {/* <button className={styles.btn}>Asignar</button> */}
-                <button className={`mb-2 ${styles.btn}`}>Atención</button>
+                {/* <button className={`mb-2 ${styles.btn}`}>Atención</button> */}
               </div>
               </div>
             </div>
