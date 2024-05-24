@@ -12,6 +12,12 @@ import SolutionRoutes from "./routes/solution.routes.js";
 import TestRoutes from "./routes/test.routes.js";
 import AuthRoutes from "./routes/auth.routes.js";
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const app = express();
 
 dotenv.config();
@@ -62,22 +68,16 @@ app.post("/upload", upload.single("file"), (req, res) => {
   }
 });
 
-// Ruta para listar todos los archivos disponibles en 'ima/'
-app.get('/listFiles', (req, res) => {
+// Ruta para obtener un archivo por su nombre
+app.get('/uploads/:filename', (req, res) => {
   try {
-    const directoryPath = path.join(__dirname, '../uploads/');
-    // Lee el contenido del directorio 'ima/'
-    fs.readdir(directoryPath, (err, files) => {
-      if (err) {
-        console.error('Error al leer el directorio:', err);
-        res.status(500).send('Error al listar archivos.');
-      } else {
-        res.status(200).json(files);
-      }
-    });
+    const filepath = path.join(__dirname, '../uploads', req.params.filename);
+    console.log(filepath);
+    if (fs.existsSync(filepath)) res.sendFile(filepath);
+    else res.status(404).send('File not found.');
   } catch (error) {
-    console.error('Error en la ruta /listFiles:', error);
-    res.status(500).send('Error interno del servidor.');
+    console.error('Error al obtener el archivo:', error);
+    res.status(500).send(error);
   }
 });
 
